@@ -1,0 +1,27 @@
+pipeline {
+    agent {
+        node {
+            label node
+        }
+    }
+
+    stages {
+        stage('Node slection'){
+            steps {
+                sh 'echo $node'
+            }
+        }
+        stage('clone') {
+            steps {
+                // Get some code from a GitHub repository
+                git url: 'https://github.com/Ashwinirao22/maven-project.git'
+
+               }
+        }
+        stage("build code") {
+            steps{
+                sh "mvn clean install"
+            }
+        }   
+        }
+    }
